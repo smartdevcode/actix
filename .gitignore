@@ -1,0 +1,13 @@
+Cargo.lock
+/doc
+/gh-pages
+__pycache__
+
+*.so
+*.out
+*.pyc
+*.pid
+*.sock
+*~
+target/
+*.egg-info/

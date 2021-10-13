@@ -1,0 +1,50 @@
+[package]
+name = "actix"
+version = "0.1.0"
+authors = ["Nikolay Kim <fafhrd91@gmail.com>"]
+description = "Actor Library"
+readme = "README.md"
+keywords = []
+homepage = "https://github.com/fafhrd91/actix/"
+repository = "https://github.com/fafhrd91/actix.git"
+documentation = "https://fafhrd91.github.io/fafhrd91/actix/"
+categories = ["network-programming", "asynchronous"]
+license = "Apache-2.0"
+exclude = [".gitignore", ".travis.yml", ".cargo/config", "appveyor.yml"]
+build = "build.rs"
+
+[lib]
+name = "actix"
+path = "src/lib.rs"
+
+[features]
+default = ["signal"]
+
+# Include process signal support, on by default
+signal = ["tokio-signal", "libc"]
+
+[dependencies]
+# tokio
+bytes = "0.4"
+futures = "0.1"
+tokio-io = "0.1"
+tokio-core = "0.1"
+
+# other
+log = "0.3"
+libc = { version = "0.2", optional = true }
+uuid = { version = "0.5", features = ["v4"] }
+
+[dependencies.tokio-signal]
+version = "0.1"
+optional = true
+
+[dev-dependencies]
+skeptic = "0.13"
+
+[build-dependencies]
+skeptic = "0.13"
+
+[profile.release]
+lto = true
+opt-level = 3
